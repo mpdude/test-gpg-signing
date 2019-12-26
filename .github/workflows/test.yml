@@ -6,8 +6,8 @@ jobs:
         runs-on: ubuntu-18.04
         steps:
             - uses: actions/checkout@v1
-            - run: gpg2 --verbose --batch --import <<< "${{ secrets.GPG_SIGNING_SUBKEY }}"
+            - run: gpg --verbose --batch --import <<< "${{ secrets.GPG_SIGNING_SUBKEY }}"
             - run: gpg-preset-passphrase --preset --verbose 90BB3177E7D3B941C1802C20130D4A1337B11AD5 <<< "${{ secrets.GPG_PASSPHRASE }}"
-            - run: echo "hello gpg" > test && gpg2 --verbose --detach-sign --armor test && cat test.asc
+            - run: echo "hello gpg" > test && gpg --verbose --detach-sign --armor test && cat test.asc
             
             
