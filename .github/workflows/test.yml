@@ -9,5 +9,5 @@ jobs:
             - run: gpg --verbose --batch --import <<< "${{ secrets.GPG_SIGNING_SUBKEY }}"
             #- run: gpg-preset-passphrase --preset --verbose 90BB3177E7D3B941C1802C20130D4A1337B11AD5 <<< "${{ secrets.GPG_PASSPHRASE }}"
             - run: echo "hello gpg" > test
-            - run: gpg --batch --passphrase-fd 0 --verbose --detach-sign --armor test <<< "${{ secrets.GPG_PASSPHRASE }}"
+            - run: GPG_TTY=$(tty) gpg --batch --passphrase-fd 0 --verbose --detach-sign --armor test <<< "${{ secrets.GPG_PASSPHRASE }}"
             - run: cat test.asc
