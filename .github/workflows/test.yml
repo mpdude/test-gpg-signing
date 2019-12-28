@@ -13,9 +13,9 @@ jobs:
             -   run: echo "hello gpg" > some-file
             -   run: gpg --batch --pinentry-mode=loopback --passphrase-fd 0 --verbose --detach-sign --armor some-file <<< "${{ secrets.GPG_PASSPHRASE }}"
             -   name: Upload binaries to release
-                    uses: svenstaro/upload-release-action@14569a2d348419d066e34e5dfa65071ecd30b64b
-                    with:
-                        repo_token: ${{ secrets.GITHUB_TOKEN }}
-                        file: some-file*
-                        file_glob: true
-                        tag: ${{ github.ref }}
+                uses: svenstaro/upload-release-action@14569a2d348419d066e34e5dfa65071ecd30b64b
+                with:
+                    repo_token: ${{ secrets.GITHUB_TOKEN }}
+                    file: some-file*
+                    file_glob: true
+                    tag: ${{ github.ref }}
